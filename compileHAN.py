@@ -1,42 +1,56 @@
 import time
+import math
 
-def exec(s):
-
-    if(s[0:2] == 'pr'):
-        print(s[2:])
+print("Static HAN 1.2")
+print("Developed by AG")
 
 #Set filepath to program(stored in a text file)
-file = open('animation.txt', "r")
+fe = open('animation.txt', "r")
 
 #Reading the file line by line
-bc = file.readlines()
+bc = fe.readlines()
 
 print("Rading file...")
-time.sleep(1)
 print("Done!")
-time.sleep(1.5)
 print("Compiling..")
-time.sleep(3)
 
+#Processing and Tokenizing the progeam before parsing
 bc = [sub[ : -1] for sub in bc]
-    
+tk = [l.split() for l in bc]
 
-print("Compiled! Running static HAN\n")
-    
-i = 0
-line = bc[i]
-    
-while(True):
-    line = bc[i]
+#Symbol table for the program
+var = {}
 
-    if(line == 'end'):
-        break 
-    elif(line[0:3] == 'goto'):
-        i = line[5:]
+for line in tk:
+    if(line[0] == 'let'):
+        var[line[1]] = float(line[3])
+
+
+print("Compilation complete! Running static HAN\n\n")
+
+for i in range(0, len(bc)):
+    line = tk[i]
+
+    if(line[0] == 'let'):
+        continue
+    elif(line[0] == 'pr'):
+        if(line[1][0] == '$'):
+            print(var[line[1][1:]])
+        else:
+            print(bc[i][3:])
+    elif(line[0] == 'add'):
+        var[line[1][1:]] = var[line[3][1:]] + var[line[5][1:]]
+    elif(line[0] == 'sub'):
+        var[line[1][1:]] = var[line[3][1:]] - var[line[5][1:]]
+    elif(line[0] == 'mul'):
+        var[line[1][1:]] = var[line[3][1:]] * var[line[5][1:]]
+    elif(line[0] == 'div'):
+        var[line[1][1:]] = var[line[3][1:]] / var[line[5][1:]]
+
+    
+    elif(line[0] == 'end'):
+        break
     else:
-        exec(line)
-        i += 1
+        continue
 
-print("\n\n Done executing!")
         
-
