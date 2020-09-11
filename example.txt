@@ -1,0 +1,12 @@
+let a is 10
+let b is 20
+let c is 0
+mul c is a and b
+print This is multiplication
+print $c
+add c is a and b
+print And this is a addition
+print $c
+end
+
+All after end will be ignored.
