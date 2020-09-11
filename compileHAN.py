@@ -5,7 +5,7 @@ print("Static HAN 1.2")
 print("Developed by AG")
 
 #Set filepath to program(stored in a text file)
-fe = open('animation.txt', "r")
+fe = open('', "r")
 
 #Reading the file line by line
 bc = fe.readlines()
