@@ -11,22 +11,31 @@ HAN code in the single quotes.
 # HAN syntax
 
 Each HAN program is a list of commands, seperated by newline characters, and ends with a `end` statement, followed by a newline
+HAN tokens are seperated by whitespace characters. Keywords and identifiers in HAN can use any character except whitespaces. All is typed in lowercase.
 The current statement(s) are:
 
-`pr sometext` - Prints all text after `pr `
+`pr sometext` - Prints all text after `pr `. to print variable names, the `sometext` will be `$varname`.
 
 `end` - Ends the program
 
-`goto lineno` - Jumps to line number lineno, indexed from 0.
+`let varname is value` - Creates a variable with name `varname` and floating point value `value`. To refer to variables, `$varname` is used.
 
-# Adding statements
-### the `exec()` function:
-The heart of the compiler is the `exec` function, which allows you to add or remove commands fron the HAN compiletime.
+`add $v1 is $v2 and v3` - Assings value of v1 + v2 to v3. Note that `add` can be replaced by `mul`, `sub`, and `div` for the other basic arithmatic operators.
 
-Each line of code is referd to by the parameter `s`.
+### Variables in HAN
 
-Every commannd is selected by splicing and checking the first few characters of a line of code.
+HAN variables are always of the floating point type. They are declared and initialized at the same time with the `let` command. Variables mustbe initialized at declaration,
+lest the IndexOutOfBounds error plauge your code.
 
-A command can then print to Python console by means of the python `print` statement.
+Outside of declaration, they are referd to using the  `$` symbol. Variable names that are called without `$` will not be treated as variables.
 
-As of right now, no variables are implemented.
+# Adding functions
+
+As HAN is still quite new, a lot of functions are unavailable. Adding functions to suit your needs is made as simple as possible.
+
+The default HAN compiler is written in python, and uses sring splicing to tokenize the program. There are 2 losts that the program is stored in- `bc` and `tk`.
+`bc` hods the progeam line by line, while `tk` stores it tokenwise and linewise. 
+
+Parsing is handled by checing syntacal structures with indices in `tk`
+
+
