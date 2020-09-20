@@ -1,0 +1,7 @@
+pr These are print statements
+pr They by default print till line ending
+pr if a Variable is passed with '$' sign
+let i is 3
+pr $i
+pr it will print variable value.
+end

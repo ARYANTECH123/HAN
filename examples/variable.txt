@@ -1,0 +1,8 @@
+let i is 3
+let j is 4
+let k is 0
+add $k is $i and $j
+pr $k
+sub $k is $j and $i
+pr $k
+end

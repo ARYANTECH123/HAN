@@ -1,0 +1,5 @@
+pr This will be printed
+goto 4
+pr This statement is not printed
+pr The goto jumps straight to here
+end

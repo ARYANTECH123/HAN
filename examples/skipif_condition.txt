@@ -1,0 +1,5 @@
+pr This will be printed
+let i is 3
+skipif i > 2 1
+pr This will not be printed
+end

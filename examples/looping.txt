@@ -1,0 +1,8 @@
+pr This will give insight into looping with HAN
+pr Even numbers are printed
+let i is 0
+pr $i
+add $i is $i and 2
+skipif $i > 20 1
+goto 4
+end
