@@ -19,7 +19,9 @@ file = open('./Examples/prime_test.txt', "r")
 #Reading the file line by line
 bc = file.readlines()
 
-print("Rading file...")
+print("Running pyHAN 1.2 patch 1")
+
+print("Reading file...")
 print("Done!")
 print("Compiling..")
 
