@@ -2,6 +2,7 @@
 A weak, esoteric language for fun!
 HAN is a language vaugly resembling BASIC that can do a little.
 It is written in a ordinary text file(`.txt`) and compiled using Python
+This is a custom version of the HAN compiler for Aman Sanju
 
 # How to use
 
