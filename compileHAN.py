@@ -27,7 +27,7 @@ print("Compiling..")
 
 #Processing and Tokenizing the progeam before parsing
 bc = [sub[ : -1] for sub in bc]
-bc = [value for value in line if value != '']
+bc = [value for value in bc if value != '']
         
 
 tk = [l.split() for l in bc]
