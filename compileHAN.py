@@ -19,7 +19,7 @@ file = open('./Examples/prime_test.txt', "r")
 #Reading the file line by line
 bc = file.readlines()
 
-print("Running pyHAN 1.2 patch 1")
+print("Running pyHAN 1.3 patch 1")
 
 print("Reading file...")
 print("Done!")
@@ -38,6 +38,11 @@ var = {}
 for line in tk:
     if(line[0] == 'let'):
         var[line[1]] = float(line[3])
+    # elif(line[0] == 'define')
+
+for line in tk:
+    if(line[0] == 'def'):
+        var['in:'+line[1]]
 
 print("\nCompiled! Running... \n\n")
 
@@ -51,6 +56,10 @@ while(True):
             print(var[line[1][1:]])
         else:
             print(bc[i][3:])
+
+    elif(line[0] == 'set'):
+        var[line[1][1:]] = interpret(line[3])
+
     elif(line[0] == 'add'):
         var[line[1][1:]] = interpret(line[3]) + interpret(line[5])
     elif(line[0] == 'sub'):
@@ -63,6 +72,8 @@ while(True):
         var[line[1][1:]] = interpret(line[3]) % interpret(line[5])
     elif(line[0] == 'inc'):
         var[line[1][1:]] += 1
+
+
     elif(line[0] == 'goto'):
         i = int(line[1]) - 2        #A quick note on goto. Lines are indexed from 1 by default.
                                     #If you want lines to be indexed from 0 instead, change th '-2' to '-1'
