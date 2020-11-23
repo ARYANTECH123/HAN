@@ -1,2 +1,8 @@
-pr Thas is a basic HAN file
+let a is 10
+let b is 20
+skipif $a > $b 2
+add $a is $a and 1
+goto 3
+pr $a
+pr $b
 end
