@@ -1,5 +1,6 @@
 import time
 import math
+import sys
 
 #This function allows use of variables and floating point numbers interchangably
 def interpret(s):
@@ -15,13 +16,13 @@ def cond(line):
     return eval(statement)
 
 #Set filepath to program(stored in a text file)
-file = open('./Examples/example.txt', "r")
+file = open(sys.argv[1], "r")
 
 #Reading the file line by line
 bc = file.readlines()
 
 #Compiler messages, trivial
-print("Running pyHAN 1.3 patch 1")
+print("Running pyHAN 1.3 patch 2")
 print("Reading file...")
 print("Done!")
 print("Compiling..")
@@ -43,6 +44,7 @@ for line in tk:
     if(line[0] == 'let'):
         var[line[1]] = float(line[3])
 
+#Experimantal function features
 for line in tk:
     if(line[0] == 'def'):
         var['in:'+line[1]] = 0
@@ -52,10 +54,12 @@ tk.append(['end'])
 
 print("\nCompiled! Running... \n\n")
 
-i = 0
-count = 0
-callpoint = 0
+#Counters used in program execution
+i = 0               #Instruction pointer of sorts
+count = 0           #Number of loop passes. Used to make a particular command do nothing
+callpoint = 0       #Points to index where function is called. Experimental.
 
+#Flags used in program execution
 inFunc = False
 err = False
 
@@ -104,7 +108,7 @@ while(True):
 
     #Program flow control 
     elif(line[0] == 'goto'):
-        i = int(line[1]) - 2        #A quick note on goto. Lines are indexed from 1 by default.
+        i = int(interpret(line[1])) - 2        #A quick note on goto. Lines are indexed from 1 by default.
                                     #If you want lines to be indexed from 0 instead, change th '-2' to '-1'
                                     #Lines indexed from 1 make counting down easier, especially in editors like VScode and Notepad++
 
@@ -114,17 +118,21 @@ while(True):
     elif(line[0] == 'doif'):
         if(not(cond(line))):
             i += int(interpret(line[4]))
-
-#    elif(line[0] === ''):
         
     elif(line[0] == 'end'):
         break
     else:
         count += 1
+
     i += 1
 
 
+#A little error handling never hurts.
 if(not err):
     print('\n\n Execution complete')
 else:
     print("Oh no! A error")        
+
+
+# Fucntions are currently in the prototyping stage
+#
